@@ -9,42 +9,46 @@ use Illuminate\Support\Str;
 
 class AdmissionServices
 {
-    public function admissionDetails($uuid)
+    public function admissionDetails(string $uuid): Applicant
     {
-        $admission = Applicant::where('uuid', $uuid)->firstOrFail();
-        
-        return $admission;
+        return Applicant::with(['academic','guardian'])->where('uuid', $uuid)->firstOrFail();
     }
 
-    public function store(array $data)
+    public function store(array $data): Applicant
     {
-        $admission = DB::transaction(function() use ($data) {
+        return DB::transaction(function () use ($data) {
+
             $applicant = Applicant::create([
-                'uuid' => (string) Str::uuid(),
-                'first_name' => $data['first_name'],
-                'middle_name' => $data['middle_name'],
-                'last_name' => $data['last_name'],
-                'email' => $data['email'],
-                'contact_number' => $data['contact_number'],
-                'birth_date' => $data['birth_date'],
-                'gender_id' => $data['gender'],
-                'house_number' => $data['house_number'],
-                'street' => $data['street'],
-                'barangay_id' => $data['barangay'],
-                'district_id' => $data['district'],
-                'city' => $data['city'],
+                'uuid'           => (string) Str::uuid(),
+                'first_name'     => $data['first_name'],
+                'middle_name'    => $data['middle_name'] ?? null,
+                'last_name'      => $data['last_name'],
+                'email'          => $data['email'],
+                'contact_number' => $data['contact_number'] ?? null,
+                'birth_date'     => $data['birth_date'],
+                'gender_id'      => $data['gender'],
+                'house_number'   => $data['house_number'] ?? null,
+                'street'         => $data['street'] ?? null,
+                'barangay_id'    => $data['barangay'],
+                'district_id'    => $data['district'],
+                'city'           => $data['city'] ?? null,
             ]);
 
             $applicant->academic()->create([
                 'jr_school' => $data['jr_school'],
-                'jr_strand' => $data['jr_stand'],
+                'jr_strand' => $data['jr_strand'] ?? null,
                 'jr_gwa'    => $data['jr_gwa'],
                 'sr_school' => $data['sr_school'],
-                'sr_strand' => $data['sr_stand'],
+                'sr_strand' => $data['sr_strand'] ?? null,
                 'sr_gwa'    => $data['sr_gwa'],
             ]);
-        });
 
-        return $admission;
+            $applicant->guardian()->create([
+                'full_name'      => $data['full_name'],
+                'contact_number' => $data['contact_number'] ?? null,
+            ]);
+
+            return $applicant->load(['academic','guardian']);
+        });
     }
 }

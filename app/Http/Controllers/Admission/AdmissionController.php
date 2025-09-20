@@ -23,25 +23,23 @@ class AdmissionController extends Controller
 
     public function store(AdmissionRequest $request)
     {
-        $admission = $this->admissionService->store($request->validated);
+        $admission = $this->admissionService->store($request->validated());
 
         activity()
             ->performedOn($admission)
             ->causedByAnonymous()
-            ->log('Applicant ' . $admission->first_name . ' ' . $admission->middle_name . ' ' . $admission->last_name . ' successfully submitted an application.');
+            ->event('created')
+            ->log("Applicant {$admission->first_name} {$admission->middle_name} {$admission->last_name} successfully submitted an application.");
 
         return redirect()
             ->route('admission.show', $admission->uuid)
-            ->with('success', 'You have been successfully submitted an application!');
+            ->with('success', 'You have successfully submitted an application!');
     }
 
-    public function show($uuid)
+    public function show(string $uuid)
     {
         $admission = $this->admissionService->admissionDetails($uuid);
 
-        return view('admission.show', compact(
-            'admission',
-            'uuid',
-        ));
+        return view('admission.show', compact('admission','uuid'));
     }
 }

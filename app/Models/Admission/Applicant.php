@@ -39,6 +39,11 @@ class Applicant extends Model
         return $this->belongsTo(AdmissionAcademic::class, 'applicant_id');
     }
 
+    public function guardian()
+    {
+        return $this->belongsTo(AdmissionGuardian::class, 'applicant_id');
+    }
+
     public function gender()
     {
         return $this->belongsTo(Gender::class, 'gender_id');
