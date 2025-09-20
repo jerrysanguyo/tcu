@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('contact_number');
             $table->string('email');
+            $table->date('birth_date');
             $table->foreignId('gender_id')->nullable()->constrained('genders')->nullOnDelete();
             $table->string('house_number');
             $table->string('street');

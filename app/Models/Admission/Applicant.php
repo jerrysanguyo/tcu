@@ -17,6 +17,7 @@ class Applicant extends Model
         'last_name',
         'contact_number',
         'email',
+        'birth_date',
         'gender_id',
         'house_number',
         'street',
@@ -28,9 +29,14 @@ class Applicant extends Model
     public static function getApplicantAdmission($uuid)
     {
         return self::select('uuid','first_name','middle_name','last_name',
-            'contact_number','email','gender_id','house_number','street',
+            'contact_number','email','gender_id','house_number','street','birth_date',
             'barangay_id','district_id','city')
         ->where('uuid', $uuid)->first();
+    }
+
+    public function academic()
+    {
+        return $this->belongsTo(AdmissionAcademic::class, 'applicant_id');
     }
 
     public function gender()
