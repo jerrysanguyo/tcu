@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Admission;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admission\AdmissionRequest;
 use App\Models\Cms\Barangay;
+use App\Models\Cms\CivilStatus;
 use App\Models\Cms\District;
 use App\Models\Cms\Gender;
+use App\Models\Cms\Program;
+use App\Models\Cms\Religion;
 use App\Models\Cms\Strand;
 use App\Services\Admission\AdmissionServices;
 use Illuminate\Http\Request;
@@ -26,18 +29,25 @@ class AdmissionController extends Controller
         $districts = District::getAllDistrict();
         $barangays = Barangay::getAllBarangay();
         $strands = Strand::getAllStrands();
+        $religions = Religion::getAllReligions();
+        $civilStatuses = CivilStatus::getAllCivilStatuses();
+        $programs = Program::getAllPrograms();
         
         return view('admission.index', compact(
             'genders',
             'districts',
             'barangays',
-            'strands'
+            'strands',
+            'religions',
+            'civilStatuses',
+            'programs',
         ));
     }
 
     public function store(AdmissionRequest $request)
     {
-        $admission = $this->admissionService->store($request->validated());
+        $data = $request->validated();
+        $admission = $this->admissionService->store($data, $request->file('comelec_file'));
 
         activity()
             ->performedOn($admission)
@@ -61,6 +71,9 @@ class AdmissionController extends Controller
     {
         $admission = $this->admissionService->admissionDetails($uuid);
 
-        return view('admission.show', compact('admission','uuid'));
+        $docPath = optional($admission->guardian)->comelec_file
+                ?? optional($admission->guardian)->voters_path;
+
+        return view('admission.show', compact('admission','uuid', 'docPath'));
     }
 }

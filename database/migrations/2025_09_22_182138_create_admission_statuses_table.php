@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('admission_statuses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('applicant_id')->constrained('applicants')->cascadeOnDelete();
-            $table->foreignId('validated_by')->constrained('users')->cascadeOnDelete();
-            $table->enum('status', ['approve','reject','proceed','non-appearance']);
-            $table->string('remarks');
+            $table->foreignId('validated_by')->nullable()->constrained('users')->nullOnDelete();
+            $table->enum('status', ['approve','pending','reject','proceed','non-appearance']);
+            $table->string('remarks')->nullable();
             $table->timestamps();
         });
     }

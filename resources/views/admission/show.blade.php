@@ -21,147 +21,40 @@
                         </div>
 
                         <div class="card-body">
-                            <div class="mb-4 text-center">
-                                <h6 class="font-weight-bold text-dark">
-                                    <i class="fas fa-clipboard-check mr-1 text-maroon"></i>Current Status:
-                                </h6><span
-                                    class="badge badge-pill badge-{{ $admission->status === 'approved' ? 'success' : ($admission->status === 'pending' ? 'warning' : 'maroon') }} px-3 py-2">
-                                    <i
-                                        class="fas {{ $admission->status === 'approved' ? 'fa-check-circle' : ($admission->status === 'pending' ? 'fa-hourglass-half' : 'fa-times-circle') }} mr-1"></i>
-                                    {{ $admission->status === 'approved' ? 'Approved' : ($admission->status === 'pending' ? 'Pending' : 'Rejected') }}
-                                </span>
-                                <p class="text-muted mt-2">
-                                    <i class="fas fa-calendar-alt mr-1"></i>
-                                    Submitted on
-                                    {{ \Carbon\Carbon::parse($admission->created_at)->format('F d, Y - h:i A') }}
-                                </p>
-                            </div>
-
-                            <hr class="border-maroon">
-
-                            <h5 class="text-maroon font-weight-bold mb-3">
-                                <i class="fas fa-user-shield mr-2"></i>Parent / Guardian Information
-                            </h5>
-                            <ul class="list-group list-group-flush mb-4">
-                                <li class="list-group-item">
-                                    <i class="fas fa-user mr-2 text-maroon"></i>
-                                    <strong>Full Name:</strong>
-                                    {{ $admission->guardian->full_name }}
+                            <ul class="nav nav-pills mb-3 justify-content-center" id="admissionTabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="tab-details" data-toggle="tab" href="#pane-details"
+                                        role="tab">
+                                        <i class="fas fa-id-card mr-1"></i> Details
+                                    </a>
                                 </li>
-                                @auth
-                                <li class="list-group-item">
-                                    <i class="fas fa-phone mr-2 text-maroon"></i>
-                                    <strong>Contact Number:</strong> {{ $admission->guardian->contact_number }}
+                                <li class="nav-item">
+                                    <a class="nav-link" id="tab-academic" data-toggle="tab" href="#pane-academic"
+                                        role="tab">
+                                        <i class="fas fa-school mr-1"></i> Academics
+                                    </a>
                                 </li>
-                                @endauth
-                            </ul>
-
-                            <h5 class="text-maroon font-weight-bold mb-3 mt-4">
-                                <i class="fas fa-child mr-2"></i>Applicant Information
-                            </h5>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">
-                                    <i class="fas fa-id-card mr-2 text-maroon"></i>
-                                    <strong>Full Name:</strong>
-                                    {{ $admission->first_name }} {{ $admission->middle_name }}
-                                    {{ $admission->last_name }}
+                                <li class="nav-item">
+                                    <a class="nav-link" id="tab-programs" data-toggle="tab" href="#pane-programs"
+                                        role="tab">
+                                        <i class="fas fa-list-ol mr-1"></i> Program Choices
+                                    </a>
                                 </li>
-                                <li class="list-group-item">
-                                    <i class="fas fa-birthday-cake mr-2 text-maroon"></i>
-                                    <strong>Birth Date:</strong>
-                                    {{ \Carbon\Carbon::parse($admission->birth_date)->format('F d, Y') }}
-                                </li>
-                                @auth
-                                <li class="list-group-item">
-                                    <i class="fas fa-phone mr-2 text-maroon"></i>
-                                    <strong>Contact Number:</strong> {{ $admission->contact_number }}
-                                </li>
-                                <li class="list-group-item">
-                                    <i class="fas fa-envelope mr-2 text-maroon"></i>
-                                    <strong>Email:</strong> {{ $admission->email }}
-                                </li>
-                                @endauth
-                                <li class="list-group-item">
-                                    <i class="fas fa-map-marker-alt mr-2 text-maroon"></i>
-                                    <strong>Address:</strong>
-                                    {{ $admission->house_number }} {{ $admission->street }}
-                                    {{ $admission->barangay->name }} {{ $admission->city }}
+                                <li class="nav-item">
+                                    <a class="nav-link" id="tab-activity" data-toggle="tab" href="#pane-activity"
+                                        role="tab">
+                                        <i class="fas fa-stream mr-1"></i> Activity
+                                    </a>
                                 </li>
                             </ul>
 
-                            <h5 class="text-maroon font-weight-bold mb-3 mt-4">
-                                <i class="fas fa-school mr-2"></i>K–12 Academic Background
-                            </h5>
-
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <div class="card border border-primary shadow-sm h-100">
-                                        <div class="card-header d-flex justify-content-between align-items-center py-2">
-                                            <span class="badge badge-primary">Junior High School</span>
-                                            <small class="text-muted">Grade 11</small>
-                                        </div>
-                                        <div class="card-body py-3">
-                                            <div class="d-flex justify-content-between align-items-start">
-                                                <div>
-                                                    <h6 class="mb-1 text-dark">
-                                                        <i class="fas fa-university mr-1 text-primary"></i>
-                                                        {{ $admission->academic->jr_school }}
-                                                    </h6>
-                                                    <span class="badge badge-light text-primary border">
-                                                        <i class="fas fa-stream mr-1"></i>
-                                                        {{ $admission->academic->jrStrand->name }}
-                                                    </span>
-                                                </div>
-                                                <span class="badge badge-pill badge-primary px-3 py-2">
-                                                    GWA: {{ number_format($admission->academic->jr_gwa, 2) }}
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-3">
-                                    <div class="card border border-warning shadow-sm h-100">
-                                        <div class="card-header d-flex justify-content-between align-items-center py-2">
-                                            <span class="badge badge-warning">Senior High School</span>
-                                            <small class="text-muted">Grade 12</small>
-                                        </div>
-                                        <div class="card-body py-3">
-                                            <div class="d-flex justify-content-between align-items-start">
-                                                <div>
-                                                    <h6 class="mb-1 text-dark">
-                                                        <i class="fas fa-university mr-1 text-warning"></i>
-                                                        {{ $admission->academic->sr_school }}
-                                                    </h6>
-                                                    <span class="badge badge-light text-warning border">
-                                                        <i class="fas fa-stream mr-1"></i>
-                                                        {{ $admission->academic->srStrand->name }}
-                                                    </span>
-                                                </div>
-                                                <span class="badge badge-pill badge-warning px-3 py-2">
-                                                    GWA: {{ number_format($admission->academic->sr_gwa, 2) }}
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="tab-content" id="admissionTabsContent">
+                                @include('admission.partial.tabs.details')
+                                @include('admission.partial.tabs.academics')
+                                @include('admission.partial.tabs.program')
+                                @include('admission.partial.tabs.activity')
                             </div>
                         </div>
-                        @auth
-                        @if($admission->status === 'pending')
-                        @role('superadmin|admin')
-                        <div class="text-center mb-4">
-                            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#approveModal">
-                                <i class="fas fa-check-circle mr-1"></i> Approve Admission
-                            </button>
-
-                            <button class="btn btn-maroon btn-lg" data-toggle="modal" data-target="#rejectModal">
-                                <i class="fas fa-times-circle mr-1"></i> Reject Admission
-                            </button>
-                        </div>
-                        @endrole
-                        @endif
-                        @endauth
                     </div>
                     <div class="mt-4 text-muted text-center">
                         <i class="fas fa-info-circle mr-1 text-maroon"></i>
@@ -182,10 +75,6 @@
     </section>
 </div>
 @endsection
-@auth
-@if($admission->status === 'pending')
-@role('superadmin|admin')
-@include('admission.partials.modal')
-@endrole
-@endif
-@endauth
+@push('modals')
+    @include('admission.partial.modal.voters')
+@endpush

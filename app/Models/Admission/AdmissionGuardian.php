@@ -11,7 +11,8 @@ class AdmissionGuardian extends Model
         'applicant_id',
         'full_name',
         'contact_number',
-        'comelec_number'
+        'comelec_number',
+        'voters_path'
     ];
 
     public function applicant()

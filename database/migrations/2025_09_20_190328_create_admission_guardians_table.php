@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('full_name');
             $table->string('contact_number');
             $table->string('comelec_number');
+            $table->string('voters_path');
             $table->timestamps();
         });
     }
