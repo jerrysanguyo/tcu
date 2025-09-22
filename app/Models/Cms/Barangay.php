@@ -16,7 +16,7 @@ class Barangay extends Model
 
     public static function getAllBarangay()
     {
-        return self::select('name', 'remarks')->get();
+        return self::select('id', 'district_id', 'name', 'remarks')->get();
     }
 
     public function district()

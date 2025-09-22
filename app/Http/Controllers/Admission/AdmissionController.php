@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Admission;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admission\AdmissionRequest;
+use App\Models\Cms\Barangay;
+use App\Models\Cms\District;
+use App\Models\Cms\Gender;
+use App\Models\Cms\Strand;
 use App\Services\Admission\AdmissionServices;
 use Illuminate\Http\Request;
 
@@ -18,7 +22,17 @@ class AdmissionController extends Controller
 
     public function index()
     {
-        return view('admission.index');
+        $genders = Gender::getAllGenders();
+        $districts = District::getAllDistrict();
+        $barangays = Barangay::getAllBarangay();
+        $strands = Strand::getAllStrands();
+        
+        return view('admission.index', compact(
+            'genders',
+            'districts',
+            'barangays',
+            'strands'
+        ));
     }
 
     public function store(AdmissionRequest $request)

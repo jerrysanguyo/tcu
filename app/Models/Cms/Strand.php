@@ -15,7 +15,7 @@ class Strand extends Model
 
     public static function getAllStrands()
     {
-        return self::select('name', 'remarks')->get();
+        return self::select('id', 'name', 'remarks')->get();
     }
 
     public function jrStrand()

@@ -36,12 +36,12 @@ class Applicant extends Model
 
     public function academic()
     {
-        return $this->belongsTo(AdmissionAcademic::class, 'applicant_id');
+        return $this->hasOne(AdmissionAcademic::class, 'applicant_id');
     }
 
     public function guardian()
     {
-        return $this->belongsTo(AdmissionGuardian::class, 'applicant_id');
+        return $this->hasOne(AdmissionGuardian::class, 'applicant_id');
     }
 
     public function gender()

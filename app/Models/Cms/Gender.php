@@ -15,7 +15,7 @@ class Gender extends Model
 
     public static function getAllGenders()
     {
-        return self::select('name', 'remarks')->get();
+        return self::select('id', 'name', 'remarks')->get();
     }
 
     public function applicant()
