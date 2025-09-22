@@ -84,7 +84,7 @@
         $('#last_name').value = 'Dela Cruz';
 
         const ts = Date.now();
-        $('#email').value = `juan${ts}@gmail.com`;
+        $('#email').value = `jsanguyo1624@gmail.com`;
 
         $('#contact_number').value = '09171234567';
         $('#birth_date').value = '2006-08-15';

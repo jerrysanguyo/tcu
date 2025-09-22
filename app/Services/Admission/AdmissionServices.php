@@ -2,6 +2,7 @@
 
 namespace App\Services\Admission;
 
+use App\Jobs\Admission\AdmissionNotificationJob;
 use App\Models\Admission\Applicant;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
@@ -97,6 +98,10 @@ class AdmissionServices
             }
 
             $applicant->status()->create(['status'=>'pending']);
+
+            DB::afterCommit(function () use ($applicant) {
+                AdmissionNotificationJob::dispatch($applicant->id)->onQueue('emails');
+            });
 
             return $applicant->load(['academic', 'guardian', 'choice.program']);
         });
