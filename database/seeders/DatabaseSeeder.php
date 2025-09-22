@@ -14,6 +14,9 @@ class DatabaseSeeder extends Seeder
             BarangaySeeder::class,
             GenderSeeder::class,
             StrandSeeder::class,
+            CivilStatusSeeder::class, 
+            ProgramSeeder::class,
+            ReligionSeeder::class,
         ]);
     }
 }

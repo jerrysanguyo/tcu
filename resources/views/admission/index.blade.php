@@ -30,19 +30,23 @@
 
                                 <div class="row">
                                     <div class="form-group col-md-8">
-                                        <label for="guardian_full_name">Full Name <span class="text-maroon">*</span></label>
+                                        <label for="guardian_full_name">Full Name <span
+                                                class="text-maroon">*</span></label>
                                         <input id="guardian_full_name" type="text"
                                             class="form-control @error('guardian_full_name') is-invalid @enderror"
                                             name="guardian_full_name" value="{{ old('guardian_full_name') }}" required>
-                                        @error('guardian_full_name') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                                        @error('guardian_full_name') <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="guardian_contact_number">Contact Number <span
                                                 class="text-maroon">*</span></label>
                                         <input id="guardian_contact_number" type="text"
                                             class="form-control @error('guardian_contact_number') is-invalid @enderror"
-                                            name="guardian_contact_number" value="{{ old('guardian_contact_number') }}" required>
-                                        @error('guardian_contact_number') <div class="invalid-feedback">{{ $message }}</div>
+                                            name="guardian_contact_number" value="{{ old('guardian_contact_number') }}"
+                                            required>
+                                        @error('guardian_contact_number') <div class="invalid-feedback">{{ $message }}
+                                        </div>
                                         @enderror
                                     </div>
                                 </div>
@@ -86,11 +90,13 @@
                                         @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                     </div>
                                     <div class="form-group col-md-3">
-                                        <label for="contact_number">Contact Number <span class="text-maroon">*</span></label>
+                                        <label for="contact_number">Contact Number <span
+                                                class="text-maroon">*</span></label>
                                         <input id="contact_number" type="text"
-                                            class="form-control @error('contact_number') is-invalid @enderror" name="contact_number"
-                                            value="{{ old('contact_number') }}" required>
-                                        @error('contact_number') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                                            class="form-control @error('contact_number') is-invalid @enderror"
+                                            name="contact_number" value="{{ old('contact_number') }}" required>
+                                        @error('contact_number') <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label for="birth_date">Birth Date <span class="text-maroon">*</span></label>
@@ -116,7 +122,7 @@
                                         @error('gender') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                     </div>
                                 </div>
-                                
+
                                 <h6 class="font-weight-bold mt-3">Address</h6>
 
                                 <div class="row">
@@ -173,7 +179,7 @@
                                         </select>
                                         @error('district') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                     </div>
-                                    
+
                                     <div class="form-group col-md-6" x-cloak>
                                         <label for="barangay">Barangay <span class="text-maroon">*</span></label>
                                         <select id="barangay"
@@ -213,7 +219,8 @@
                                         <select id="jr_strand"
                                             class="form-control @error('jr_strand') is-invalid @enderror"
                                             name="jr_strand" required>
-                                            <option value="" {{ old('jr_strand') ? '' : 'selected' }}>Select strand</option>
+                                            <option value="" {{ old('jr_strand') ? '' : 'selected' }}>Select strand
+                                            </option>
                                             @isset($strands)
                                             @foreach($strands as $s)
                                             <option value="{{ $s->id }}"
@@ -249,7 +256,8 @@
                                         <select id="sr_strand"
                                             class="form-control @error('sr_strand') is-invalid @enderror"
                                             name="sr_strand">
-                                            <option value="" {{ old('sr_strand') ? '' : 'selected' }}>Select strand</option>
+                                            <option value="" {{ old('sr_strand') ? '' : 'selected' }}>Select strand
+                                            </option>
                                             @isset($strands)
                                             @foreach($strands as $s)
                                             <option value="{{ $s->id }}"

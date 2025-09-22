@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('birth_place');
             $table->foreignId('gender_id')->nullable()->constrained('genders')->nullOnDelete();
             $table->foreignId('religion_id')->nullable()->constrained('religions')->nullOnDelete();
-            $table->foreignId('civil_id')->nullable()->constrained('civils_statuses')->nullOnDelete();
+            $table->foreignId('civil_id')->nullable()->constrained('civil_statuses')->nullOnDelete();
             $table->string('nationality');
             $table->string('ethnic_background');
             $table->string('house_number');

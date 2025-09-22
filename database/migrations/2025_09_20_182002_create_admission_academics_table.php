@@ -17,13 +17,13 @@ return new class extends Migration
             $table->integer('lrn');
             // jr
             $table->string('jr_school');
-            $table->foreignId('jr_strand_id')->nullable()->constrained('strand_id')->nullOnDelete();
+            $table->foreignId('jr_strand_id')->nullable()->constrained('strands')->nullOnDelete();
             $table->string('jr_year_graduated');
             $table->decimal('jr_gwa_first', 3, 2);
             $table->decimal('jr_gwa_second', 3, 2);
             // senior
             $table->string('sr_school');
-            $table->foreignId('sr_strand_id')->nullable()->constrained('strand_id')->nullOnDelete();
+            $table->foreignId('sr_strand_id')->nullable()->constrained('strands')->nullOnDelete();
             $table->string('sr_year_graduated');
             $table->decimal('sr_gwa_first', 3, 2);
             $table->decimal('sr_gwa_second', 3, 2);
