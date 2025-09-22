@@ -20,11 +20,11 @@ class Strand extends Model
 
     public function jrStrand()
     {
-        return $this->hasMany(AdmissionAcademic::class, 'jr_strand');
+        return $this->hasMany(AdmissionAcademic::class, 'jr_strand_id');
     }
 
     public function srStrand()
     {
-        return $this->hasMany(AdmissionAcademic::class, 'sr_stand');
+        return $this->hasMany(AdmissionAcademic::class, 'jr_strand_id');
     }
 }

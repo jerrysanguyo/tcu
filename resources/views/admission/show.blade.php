@@ -11,7 +11,7 @@
                             class="shadow-light rounded-circle">
                     </div>
 
-                    <div class="card card-danger">
+                    <div class="card card-maroon">
                         <div class="card-header">
                             <div class="text-center w-100">
                                 <h4 class="mb-1 font-bold text-blue-800 text-xl">
@@ -23,9 +23,9 @@
                         <div class="card-body">
                             <div class="mb-4 text-center">
                                 <h6 class="font-weight-bold text-dark">
-                                    <i class="fas fa-clipboard-check mr-1 text-danger"></i>Current Status:
+                                    <i class="fas fa-clipboard-check mr-1 text-maroon"></i>Current Status:
                                 </h6><span
-                                    class="badge badge-pill badge-{{ $admission->status === 'approved' ? 'success' : ($admission->status === 'pending' ? 'warning' : 'danger') }} px-3 py-2">
+                                    class="badge badge-pill badge-{{ $admission->status === 'approved' ? 'success' : ($admission->status === 'pending' ? 'warning' : 'maroon') }} px-3 py-2">
                                     <i
                                         class="fas {{ $admission->status === 'approved' ? 'fa-check-circle' : ($admission->status === 'pending' ? 'fa-hourglass-half' : 'fa-times-circle') }} mr-1"></i>
                                     {{ $admission->status === 'approved' ? 'Approved' : ($admission->status === 'pending' ? 'Pending' : 'Rejected') }}
@@ -37,59 +37,59 @@
                                 </p>
                             </div>
 
-                            <hr class="border-danger">
+                            <hr class="border-maroon">
 
-                            <h5 class="text-danger font-weight-bold mb-3">
+                            <h5 class="text-maroon font-weight-bold mb-3">
                                 <i class="fas fa-user-shield mr-2"></i>Parent / Guardian Information
                             </h5>
                             <ul class="list-group list-group-flush mb-4">
                                 <li class="list-group-item">
-                                    <i class="fas fa-user mr-2 text-danger"></i>
+                                    <i class="fas fa-user mr-2 text-maroon"></i>
                                     <strong>Full Name:</strong>
                                     {{ $admission->guardian->full_name }}
                                 </li>
                                 @auth
                                 <li class="list-group-item">
-                                    <i class="fas fa-phone mr-2 text-danger"></i>
+                                    <i class="fas fa-phone mr-2 text-maroon"></i>
                                     <strong>Contact Number:</strong> {{ $admission->guardian->contact_number }}
                                 </li>
                                 @endauth
                             </ul>
 
-                            <h5 class="text-danger font-weight-bold mb-3 mt-4">
+                            <h5 class="text-maroon font-weight-bold mb-3 mt-4">
                                 <i class="fas fa-child mr-2"></i>Applicant Information
                             </h5>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">
-                                    <i class="fas fa-id-card mr-2 text-danger"></i>
+                                    <i class="fas fa-id-card mr-2 text-maroon"></i>
                                     <strong>Full Name:</strong>
                                     {{ $admission->first_name }} {{ $admission->middle_name }}
                                     {{ $admission->last_name }}
                                 </li>
                                 <li class="list-group-item">
-                                    <i class="fas fa-birthday-cake mr-2 text-danger"></i>
+                                    <i class="fas fa-birthday-cake mr-2 text-maroon"></i>
                                     <strong>Birth Date:</strong>
                                     {{ \Carbon\Carbon::parse($admission->birth_date)->format('F d, Y') }}
                                 </li>
                                 @auth
                                 <li class="list-group-item">
-                                    <i class="fas fa-phone mr-2 text-danger"></i>
+                                    <i class="fas fa-phone mr-2 text-maroon"></i>
                                     <strong>Contact Number:</strong> {{ $admission->contact_number }}
                                 </li>
                                 <li class="list-group-item">
-                                    <i class="fas fa-envelope mr-2 text-danger"></i>
+                                    <i class="fas fa-envelope mr-2 text-maroon"></i>
                                     <strong>Email:</strong> {{ $admission->email }}
                                 </li>
                                 @endauth
                                 <li class="list-group-item">
-                                    <i class="fas fa-map-marker-alt mr-2 text-danger"></i>
+                                    <i class="fas fa-map-marker-alt mr-2 text-maroon"></i>
                                     <strong>Address:</strong>
                                     {{ $admission->house_number }} {{ $admission->street }}
                                     {{ $admission->barangay->name }} {{ $admission->city }}
                                 </li>
                             </ul>
 
-                            <h5 class="text-danger font-weight-bold mb-3 mt-4">
+                            <h5 class="text-maroon font-weight-bold mb-3 mt-4">
                                 <i class="fas fa-school mr-2"></i>K–12 Academic Background
                             </h5>
 
@@ -155,7 +155,7 @@
                                 <i class="fas fa-check-circle mr-1"></i> Approve Admission
                             </button>
 
-                            <button class="btn btn-danger btn-lg" data-toggle="modal" data-target="#rejectModal">
+                            <button class="btn btn-maroon btn-lg" data-toggle="modal" data-target="#rejectModal">
                                 <i class="fas fa-times-circle mr-1"></i> Reject Admission
                             </button>
                         </div>
@@ -164,11 +164,11 @@
                         @endauth
                     </div>
                     <div class="mt-4 text-muted text-center">
-                        <i class="fas fa-info-circle mr-1 text-danger"></i>
+                        <i class="fas fa-info-circle mr-1 text-maroon"></i>
                         If you wish to update any details, kindly reach out to the admissions team.
                     </div>
                     <div class="mt-4 text-center text-muted">
-                        <a href="#" class="btn btn-outline-danger mt-2">
+                        <a href="#" class="btn btn-outline-maroon mt-2">
                             <i class="fas fa-arrow-left mr-1"></i> Go Back
                         </a>
                     </div>

@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('admission_guardians', function (Blueprint $table) {
+        Schema::create('admission_choices', function (Blueprint $table) {
             $table->id();
             $table->foreignId('applicant_id')->constrained('applicants')->cascadeOnDelete();
-            $table->string('full_name');
-            $table->string('contact_number');
-            $table->string('comelec_number');
+            $table->foreignId('program_id')->nullable()->constrained('programs')->nullOnDelete();
+            $table->enum('remarks',['first','second','third']);
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('admission_guardians');
+        Schema::dropIfExists('choices');
     }
 };

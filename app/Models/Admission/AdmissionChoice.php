@@ -2,20 +2,25 @@
 
 namespace App\Models\Admission;
 
+use App\Models\Cms\Program;
 use Illuminate\Database\Eloquent\Model;
 
-class AdmissionGuardian extends Model
+class AdmissionChoice extends Model
 {
-    protected $table = 'admission_guardians';
+    protected $table = 'admission_choices';
     protected $fillable = [
         'applicant_id',
-        'full_name',
-        'contact_number',
-        'comelec_number'
+        'program_id',
+        'remarks',
     ];
 
     public function applicant()
     {
         return $this->belongsTo(Applicant::class, 'applicant_id');
+    }
+
+    public function program()
+    {
+        return $this->belongsTo(Program::class, 'program_id');
     }
 }

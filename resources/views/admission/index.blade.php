@@ -12,7 +12,7 @@
                             class="shadow-light rounded-circle">
                     </div>
 
-                    <div class="card card-danger">
+                    <div class="card card-maroon">
                         <div class="card-header">
                             <div class="text-center w-100">
                                 <h4 class="mb-1 font-bold text-blue-800 text-xl">Applicant Admission Form</h4>
@@ -26,11 +26,11 @@
                             <form id="status-form" action="{{ route('admission.store') }}" method="POST">
                                 @csrf
 
-                                <h5 class="text-danger font-weight-bold mb-3">Parent / Guardian Information</h5>
+                                <h5 class="text-maroon font-weight-bold mb-3">Parent / Guardian Information</h5>
 
                                 <div class="row">
                                     <div class="form-group col-md-8">
-                                        <label for="guardian_full_name">Full Name <span class="text-danger">*</span></label>
+                                        <label for="guardian_full_name">Full Name <span class="text-maroon">*</span></label>
                                         <input id="guardian_full_name" type="text"
                                             class="form-control @error('guardian_full_name') is-invalid @enderror"
                                             name="guardian_full_name" value="{{ old('guardian_full_name') }}" required>
@@ -38,7 +38,7 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="guardian_contact_number">Contact Number <span
-                                                class="text-danger">*</span></label>
+                                                class="text-maroon">*</span></label>
                                         <input id="guardian_contact_number" type="text"
                                             class="form-control @error('guardian_contact_number') is-invalid @enderror"
                                             name="guardian_contact_number" value="{{ old('guardian_contact_number') }}" required>
@@ -49,11 +49,11 @@
 
                                 <hr class="my-4">
 
-                                <h5 class="text-danger font-weight-bold mb-3">Applicant Information</h5>
+                                <h5 class="text-maroon font-weight-bold mb-3">Applicant Information</h5>
 
                                 <div class="row">
                                     <div class="form-group col-md-4">
-                                        <label for="first_name">First Name <span class="text-danger">*</span></label>
+                                        <label for="first_name">First Name <span class="text-maroon">*</span></label>
                                         <input id="first_name" type="text"
                                             class="form-control @error('first_name') is-invalid @enderror"
                                             name="first_name" value="{{ old('first_name') }}" required>
@@ -69,7 +69,7 @@
                                         @enderror
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="last_name">Last Name <span class="text-danger">*</span></label>
+                                        <label for="last_name">Last Name <span class="text-maroon">*</span></label>
                                         <input id="last_name" type="text"
                                             class="form-control @error('last_name') is-invalid @enderror"
                                             name="last_name" value="{{ old('last_name') }}" required>
@@ -79,21 +79,21 @@
 
                                 <div class="row">
                                     <div class="form-group col-md-3">
-                                        <label for="email">Email <span class="text-danger">*</span></label>
+                                        <label for="email">Email <span class="text-maroon">*</span></label>
                                         <input id="email" type="email"
                                             class="form-control @error('email') is-invalid @enderror" name="email"
                                             value="{{ old('email') }}" required>
                                         @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                     </div>
                                     <div class="form-group col-md-3">
-                                        <label for="contact_number">Contact Number <span class="text-danger">*</span></label>
+                                        <label for="contact_number">Contact Number <span class="text-maroon">*</span></label>
                                         <input id="contact_number" type="text"
                                             class="form-control @error('contact_number') is-invalid @enderror" name="contact_number"
                                             value="{{ old('contact_number') }}" required>
                                         @error('contact_number') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                     </div>
                                     <div class="form-group col-md-3">
-                                        <label for="birth_date">Birth Date <span class="text-danger">*</span></label>
+                                        <label for="birth_date">Birth Date <span class="text-maroon">*</span></label>
                                         <input id="birth_date" type="date"
                                             class="form-control @error('birth_date') is-invalid @enderror"
                                             name="birth_date" value="{{ old('birth_date') }}" required>
@@ -101,7 +101,7 @@
                                         @enderror
                                     </div>
                                     <div class="form-group col-md-3">
-                                        <label for="gender">Gender <span class="text-danger">*</span></label>
+                                        <label for="gender">Gender <span class="text-maroon">*</span></label>
                                         <select id="gender" class="form-control @error('gender') is-invalid @enderror"
                                             name="gender" required>
                                             <option value="" disabled {{ old('gender') ? '' : 'selected' }}>Select
@@ -161,7 +161,7 @@
                                     }">
 
                                     <div class="form-group col-md-6">
-                                        <label for="district">District <span class="text-danger">*</span></label>
+                                        <label for="district">District <span class="text-maroon">*</span></label>
                                         <select id="district"
                                             class="form-control @error('district') is-invalid @enderror" name="district"
                                             x-model="selectedDistrict" @change="onDistrictChange" required>
@@ -175,7 +175,7 @@
                                     </div>
                                     
                                     <div class="form-group col-md-6" x-cloak>
-                                        <label for="barangay">Barangay <span class="text-danger">*</span></label>
+                                        <label for="barangay">Barangay <span class="text-maroon">*</span></label>
                                         <select id="barangay"
                                             class="form-control @error('barangay') is-invalid @enderror" name="barangay"
                                             x-model="selectedBarangay" :disabled="!selectedDistrict" required>
@@ -197,12 +197,12 @@
 
                                 <hr class="my-4">
 
-                                <h5 class="text-danger font-weight-bold mb-3">Academic Background</h5>
+                                <h5 class="text-maroon font-weight-bold mb-3">Academic Background</h5>
 
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label for="jr_school">Junior High School <span
-                                                class="text-danger">*</span></label>
+                                                class="text-maroon">*</span></label>
                                         <input id="jr_school" type="text"
                                             class="form-control @error('jr_school') is-invalid @enderror"
                                             name="jr_school" value="{{ old('jr_school') }}" required>
@@ -213,7 +213,7 @@
                                         <select id="jr_strand"
                                             class="form-control @error('jr_strand') is-invalid @enderror"
                                             name="jr_strand" required>
-                                            <option value="" {{ old('jr_strand') ? '' : 'selected' }}>— None —</option>
+                                            <option value="" {{ old('jr_strand') ? '' : 'selected' }}>Select strand</option>
                                             @isset($strands)
                                             @foreach($strands as $s)
                                             <option value="{{ $s->id }}"
@@ -238,7 +238,7 @@
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label for="sr_school">Senior High School <span
-                                                class="text-danger">*</span></label>
+                                                class="text-maroon">*</span></label>
                                         <input id="sr_school" type="text"
                                             class="form-control @error('sr_school') is-invalid @enderror"
                                             name="sr_school" value="{{ old('sr_school') }}" required>
@@ -249,7 +249,7 @@
                                         <select id="sr_strand"
                                             class="form-control @error('sr_strand') is-invalid @enderror"
                                             name="sr_strand">
-                                            <option value="" {{ old('sr_strand') ? '' : 'selected' }}>— None —</option>
+                                            <option value="" {{ old('sr_strand') ? '' : 'selected' }}>Select strand</option>
                                             @isset($strands)
                                             @foreach($strands as $s)
                                             <option value="{{ $s->id }}"
@@ -272,7 +272,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-danger btn-lg btn-block">Submit</button>
+                                    <button type="submit" class="btn btn-maroon btn-lg btn-block">Submit</button>
                                 </div>
                             </form>
                         </div>

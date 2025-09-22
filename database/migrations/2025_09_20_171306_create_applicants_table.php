@@ -20,13 +20,18 @@ return new class extends Migration
             $table->string('contact_number');
             $table->string('email');
             $table->date('birth_date');
+            $table->string('birth_place');
             $table->foreignId('gender_id')->nullable()->constrained('genders')->nullOnDelete();
+            $table->foreignId('religion_id')->nullable()->constrained('religions')->nullOnDelete();
+            $table->foreignId('civil_id')->nullable()->constrained('civils_statuses')->nullOnDelete();
+            $table->string('nationality');
+            $table->string('ethnic_background');
             $table->string('house_number');
             $table->string('street');
             $table->foreignId('barangay_id')->nullable()->constrained('barangays')->nullOnDelete();
             $table->foreignId('district_id')->nullable()->constrained('districts')->nullOnDelete();
             $table->string('city')->default('taguig city');
-            $table->enum('status', ['approve','pending','rejected']);
+            $table->string('zip_code');
             $table->timestamps();
         });
     }

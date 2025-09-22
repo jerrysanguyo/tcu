@@ -18,13 +18,18 @@ class Applicant extends Model
         'contact_number',
         'email',
         'birth_date',
+        'birth_place',
         'gender_id',
+        'religion_id',
+        'civil_id',
+        'nationality',
+        'ethnic_background',
         'house_number',
         'street',
         'barangay_id',
         'district_id',
         'city',
-        'status'
+        'zip_code',
     ];
 
     public static function getApplicantAdmission($uuid)
@@ -43,6 +48,11 @@ class Applicant extends Model
     public function guardian()
     {
         return $this->hasOne(AdmissionGuardian::class, 'applicant_id');
+    }
+
+    public function choice()
+    {
+        return $this->hasMany(AdmissionChoice::class, 'applicant_id');
     }
 
     public function gender()

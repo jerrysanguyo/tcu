@@ -14,12 +14,19 @@ return new class extends Migration
         Schema::create('admission_academics', function (Blueprint $table) {
             $table->id();
             $table->foreignId('applicant_id')->constrained('applicants')->cascadeOnDelete();
+            $table->integer('lrn');
+            // jr
             $table->string('jr_school');
-            $table->foreignId('jr_strand')->nullable()->constrained('strands')->nullOnDelete();
-            $table->decimal('jr_gwa', 3, 2);
+            $table->foreignId('jr_strand_id')->nullable()->constrained('strand_id')->nullOnDelete();
+            $table->string('jr_year_graduated');
+            $table->decimal('jr_gwa_first', 3, 2);
+            $table->decimal('jr_gwa_second', 3, 2);
+            // senior
             $table->string('sr_school');
-            $table->foreignId('sr_strand')->nullable()->constrained('strands')->nullOnDelete();
-            $table->decimal('sr_gwa', 3, 2);
+            $table->foreignId('sr_strand_id')->nullable()->constrained('strand_id')->nullOnDelete();
+            $table->string('sr_year_graduated');
+            $table->decimal('sr_gwa_first', 3, 2);
+            $table->decimal('sr_gwa_second', 3, 2);
             $table->timestamps();
         });
     }
