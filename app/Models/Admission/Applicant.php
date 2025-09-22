@@ -2,6 +2,7 @@
 
 namespace App\Models\Admission;
 
+use App\Models\AdmissionStatus;
 use App\Models\Cms\Barangay;
 use App\Models\Cms\District;
 use App\Models\Cms\Gender;
@@ -53,6 +54,11 @@ class Applicant extends Model
     public function choice()
     {
         return $this->hasMany(AdmissionChoice::class, 'applicant_id');
+    }
+
+    public function status()
+    {
+        return $this->hasOne(AdmissionStatus::class, 'applicant_id');
     }
 
     public function gender()
