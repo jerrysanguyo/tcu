@@ -26,6 +26,7 @@ return new class extends Migration
             $table->foreignId('barangay_id')->nullable()->constrained('barangays')->nullOnDelete();
             $table->foreignId('district_id')->nullable()->constrained('districts')->nullOnDelete();
             $table->string('city')->default('taguig city');
+            $table->enum('status', ['approve','pending','rejected']);
             $table->timestamps();
         });
     }

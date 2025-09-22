@@ -45,6 +45,13 @@ class AdmissionController extends Controller
             ->event('created')
             ->log("Applicant {$admission->first_name} {$admission->middle_name} {$admission->last_name} successfully submitted an application.");
 
+        if ($request->expectsJson()) {
+            return response()->json([
+                'message' => 'You have successfully submitted an application!',
+                'data'    => $admission,
+            ], 201);
+        }
+
         return redirect()
             ->route('admission.show', $admission->uuid)
             ->with('success', 'You have successfully submitted an application!');

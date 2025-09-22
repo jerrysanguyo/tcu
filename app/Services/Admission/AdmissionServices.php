@@ -32,7 +32,8 @@ class AdmissionServices
                 'barangay_id'    => $data['barangay'],
                 'district_id'    => $data['district'],
                 'city'           => $data['city'],
-            ]);
+                'status'         => 'pending',
+            ]); 
 
             $applicant->academic()->create([
                 'jr_school' => $data['jr_school'],

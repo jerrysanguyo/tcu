@@ -23,7 +23,8 @@ class Applicant extends Model
         'street',
         'barangay_id',
         'district_id',
-        'city'
+        'city',
+        'status'
     ];
 
     public static function getApplicantAdmission($uuid)
