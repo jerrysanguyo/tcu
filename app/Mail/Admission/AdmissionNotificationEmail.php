@@ -24,25 +24,15 @@ class AdmissionNotificationEmail extends Mailable
 
     public function build()
     {
-        $cityLogoPath       = public_path('images/tcu_logo.png');        
-        $admissionsLogoPath = public_path('images/tcu_logo.png'); 
-
-        $this->withSymfonyMessage(function ($message) use ($cityLogoPath, $admissionsLogoPath) {
-            if (is_file($cityLogoPath)) {
-                $this->cityLogoCid = $message->embedFromPath($cityLogoPath, 'city-logo', 'image/png');
-            }
-            if (is_file($admissionsLogoPath)) {
-                $this->admissionsLogoCid = $message->embedFromPath($admissionsLogoPath, 'admissions-logo', 'image/png');
-            }
-        });
-        
         return $this->subject('We received your admission application')
-            ->view('email.admission.applicant_submitted_html')
-            ->with([
-                'applicant'          => $this->applicant,
-                'cityLogoCid'        => $this->cityLogoCid,
-                'admissionsLogoCid'  => $this->admissionsLogoCid,
-                'applicationUrl'     => route('admission.show', $this->applicant->uuid),
+            ->withSwiftMessage(function ($message) {
+                $this->cityLogoCid = $message->embed(public_path('images/city_logo.webp'));
+                $this->yakapLogoCid = $message->embed(public_path('images/yakap_logo.webp'));
+            })
+            ->markdown('email.admission.applicant_submitted', [
+                'applicant' => $this->applicant,
+                'cityLogoCid' => $this->cityLogoCid,
+                'yakapLogoCid' => $this->yakapLogoCid,
             ]);
     }
 }

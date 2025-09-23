@@ -25,3 +25,17 @@
 .card-maroon {
     border-top: 4px solid #800000 !important;
 }
+
+
+.card-top-maroon {
+    border-top: 4px solid #7b1e1e;
+}
+
+.text-maroon {
+    color: #7b1e1e !important;
+}
+
+.badge-maroon {
+    background-color: #7b1e1e;
+    color: #fff;
+}
